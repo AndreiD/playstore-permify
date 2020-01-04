@@ -34,7 +34,7 @@ op: 'and',
   expr1: {
   op: 'equals',
   expr1: 'from',
-  expr2: 'xxxxxxxxxxxxxx'
+  expr2: 'ZGt8zl7EJyMMEQ_j4kLaAYlEFOhrgYSEOw6eFPhIV0Y'
   },
   expr2: {
   op: 'equals',
@@ -44,7 +44,7 @@ op: 'and',
   expr3: {
   op: 'equals',
   expr1: 'date',
-  expr2: '2020-01-03'
+  expr2: '2020-01-05'
   }
 }
 ```
