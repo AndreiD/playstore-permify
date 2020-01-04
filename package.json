@@ -1,0 +1,20 @@
+{
+  "name": "playstore-permify",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "nodemon app.js",
+    "start": "pm2 start --env production",
+    "stop": "pm2 stop 'googleplayhistory'; pm2 del 'torrentdump'"
+  },
+  "dependencies": {
+    "arweave": "^1.6.0",
+    "bull": "^3.12.1",
+    "debug": "~2.6.9",
+    "google-play-scraper": "^7.1.1",
+    "node-cron": "^2.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
