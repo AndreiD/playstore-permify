@@ -29,26 +29,24 @@ The app loads the top apps, both FREE and PAID from each category and uploads th
 Since the json is pretty big, you should get the dump, day by day.
 
 ```
-
 {
 op: 'and',
-expr1: {
-op: 'equals',
-expr1: 'from',
-expr2: 'xxxxxxxxxxxxxx'
-},
-expr2: {
-op: 'equals',
-expr1: 'Feed-Name',
-expr2: 'googleplay-history'
-},
-expr3: {
-op: 'equals',
-expr1: 'date',
-expr2: '2020-01-03'
+  expr1: {
+  op: 'equals',
+  expr1: 'from',
+  expr2: 'xxxxxxxxxxxxxx'
+  },
+  expr2: {
+  op: 'equals',
+  expr1: 'Feed-Name',
+  expr2: 'googleplay-history'
+  },
+  expr3: {
+  op: 'equals',
+  expr1: 'date',
+  expr2: '2020-01-03'
+  }
 }
-}
-
 ```
 
 Categories tracked
@@ -126,7 +124,3 @@ nano config.js
 ```
 
 # License MIT
-
-```
-
-```
