@@ -97,6 +97,18 @@ arweave.wallets.jwkToAddress(rsaKey).then(address => {
   });
 });
 
+// add jobs to the queue....
+Object.keys(gplay.category).forEach(function(item) {
+  jobQueue.add({
+    category: item,
+    collection: gplay.collection.TOP_FREE
+  });
+  jobQueue.add({
+    category: item,
+    collection: gplay.collection.TOP_PAID
+  });
+});
+
 // every day at 10:10
 cron.schedule("10 10 10 * *", function() {
   // add jobs to the queue....
