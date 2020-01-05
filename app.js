@@ -1,6 +1,5 @@
 const Arweave = require("arweave/node");
 const fs = require("fs");
-const cron = require("node-cron");
 
 var arweave;
 var Queue = require("bull");
