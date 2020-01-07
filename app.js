@@ -28,7 +28,7 @@ jobQueue.process(function(job, done) {
     .list({
       category: job.data.category,
       collection: job.data.collection,
-      num: 2
+      num: 20
     })
     .then(resp => {
       var appList = {
