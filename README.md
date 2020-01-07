@@ -121,6 +121,10 @@ FAMILY_PRETEND
 cp config-sample.js config.js
 nano config.js
 .... edit it
+
+crontab -e
+30 17 * * * /usr/bin/node /home/path_to_your_app/app.js
+
 ```
 
 # License MIT
