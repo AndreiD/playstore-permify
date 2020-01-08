@@ -20,6 +20,10 @@ Example app details:
     }
 ```
 
+or check the latest transaction here
+
+https://viewblock.io/arweave/address/ZGt8zl7EJyMMEQ_j4kLaAYlEFOhrgYSEOw6eFPhIV0Y
+
 ## How it works
 
 The app loads the top apps, both FREE and PAID from each category and uploads them to arweave as a permafeed.

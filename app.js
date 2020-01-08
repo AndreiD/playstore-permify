@@ -1,5 +1,6 @@
 const Arweave = require("arweave/node");
 const fs = require("fs");
+const utf8 = require("utf8");
 
 var arweave;
 var Queue = require("bull");
@@ -13,7 +14,7 @@ var jobQueue = new Queue("jobqueue", {
     password: config.redis.pass
   }
 });
-const version = "0.1";
+const version = "0.5";
 
 // sleep time expects milliseconds
 function sleep(time) {
@@ -22,8 +23,10 @@ function sleep(time) {
 
 // core of the app
 jobQueue.process(function(job, done) {
-  console.log("working on -> %s %s", job.data.category, job.data.collection);
+  console.log("Working on -> %s %s", job.data.category, job.data.collection);
 
+  // category: gplay.category.ANDROID_WEAR,
+  // collection: gplay.collection.TOP_FREE,
   gplay
     .list({
       category: job.data.category,
@@ -31,12 +34,21 @@ jobQueue.process(function(job, done) {
       num: 20
     })
     .then(resp => {
+      // some items are not formatted ok, so quotes appear not escaped
+      resp = resp.map(function(element) {
+        element.summary = element.summary.replace(/"/g, '\\"');
+        element.summary = utf8.encode(element.summary);
+        return element;
+      });
+
       var appList = {
         category: job.data.category,
         type: job.data.collection,
         items: resp
       };
       payload.push(appList);
+
+      console.log(JSON.stringify(payload));
     });
 
   // don't let google ban you

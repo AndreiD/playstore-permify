@@ -11,7 +11,8 @@
     "arweave": "^1.6.0",
     "bull": "^3.12.1",
     "debug": "~2.6.9",
-    "google-play-scraper": "^7.1.1"
+    "google-play-scraper": "^7.1.1",
+    "utf8": "^3.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"
