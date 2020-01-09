@@ -38,6 +38,7 @@ jobQueue.process(function(job, done) {
       resp = resp.map(function(element) {
         element.summary = element.summary.replace(/"/g, '\\"');
         element.summary = utf8.encode(element.summary);
+        element.summary = element.summary.replace(/(\r\n|\n|\r)/gm, "");
         return element;
       });
 
