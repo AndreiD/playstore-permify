@@ -14,7 +14,7 @@ Example app details:
       "developerId": "6938298709975174416",
       "priceText": "FREE",
       "free": true,
-      "summary": "Glitter dress coloring and drawing for Kids and girls",
+      "summary": "BASE64_ENCODED!",
       "scoreText": "3.6",
       "score": 3.6320755
     }
@@ -48,7 +48,7 @@ op: 'and',
   expr3: {
   op: 'equals',
   expr1: 'date',
-  expr2: '2020-01-05'
+  expr2: '2020-01-10'
   }
 }
 ```
