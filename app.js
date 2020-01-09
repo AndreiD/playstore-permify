@@ -15,6 +15,7 @@ var jobQueue = new Queue("jobqueue", {
   }
 });
 const version = "0.5";
+var counter = 0;
 
 // sleep time expects milliseconds
 function sleep(time) {
@@ -23,12 +24,18 @@ function sleep(time) {
 
 // core of the app
 jobQueue.process(function(job, done) {
-  console.log("Working on -> %s %s", job.data.category, job.data.collection);
+  counter = counter + 1;
+  console.log(
+    "Working on -> %s %s (%d/110)",
+    job.data.category,
+    job.data.collection,
+    counter
+  );
 
-  // category: gplay.category.ANDROID_WEAR,
-  // collection: gplay.collection.TOP_FREE,
   gplay
     .list({
+      //category: gplay.category.APPLICATION,
+      //collection: gplay.collection.TOP_PAID,
       category: job.data.category,
       collection: job.data.collection,
       num: 20
@@ -36,9 +43,8 @@ jobQueue.process(function(job, done) {
     .then(resp => {
       // some items are not formatted ok, so quotes appear not escaped
       resp = resp.map(function(element) {
-        element.summary = element.summary.replace(/"/g, '\\"');
         element.summary = utf8.encode(element.summary);
-        element.summary = element.summary.replace(/(\r\n|\n|\r)/gm, "");
+        element.summary = Buffer.from(element.summary).toString("base64");
         return element;
       });
 
@@ -48,8 +54,6 @@ jobQueue.process(function(job, done) {
         items: resp
       };
       payload.push(appList);
-
-      console.log(JSON.stringify(payload));
     });
 
   // don't let google ban you
@@ -60,7 +64,7 @@ jobQueue.process(function(job, done) {
 
 // publishes the payload to arweave
 async function publishOnArweave(payload) {
-  console.log("publishing it to arweave....................");
+  console.log("publishing it to Arweave....................");
 
   let transaction = await arweave.createTransaction(
     {
