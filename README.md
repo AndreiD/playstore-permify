@@ -48,10 +48,12 @@ op: 'and',
   expr3: {
   op: 'equals',
   expr1: 'date',
-  expr2: '2020-01-10'
+  expr2: '2020-01-31'
   }
 }
 ```
+
+where the date is in YYYY-MM-DD format
 
 Categories tracked
 
