@@ -30,37 +30,38 @@ https://viewblock.io/arweave/address/ZGt8zl7EJyMMEQ_j4kLaAYlEFOhrgYSEOw6eFPhIV0Y
 
 The app loads the top apps, both FREE and PAID from each category and uploads them to arweave as a permafeed.
 
-## ArQL Examples
+## How to query it ?
 
-Since the json is pretty big, you should get the dump, day by day.
+Best way to do it, is by using the wonderful library https://www.npmjs.com/package/arql-ops
+I've added an example folder
 
 ```
-{
-op: 'and',
-  expr1: {
-  op: 'equals',
-  expr1: 'from',
-  expr2: 'ZGt8zl7EJyMMEQ_j4kLaAYlEFOhrgYSEOw6eFPhIV0Y'
-  },
-  expr2: {
-  op: 'equals',
-  expr1: 'Feed-Name',
-  expr2: 'googleplay-history'
-  },
-  expr3: {
-  op: 'equals',
-  expr1: 'Date',
-  expr2: '2020-01-11'
-  },
-  expr4: {
-  op: 'equals',
-  expr1: 'Category',
-  expr2: 'PARENTING'
-  }
-}
-```
+const { or, equals, and } = require("arql-ops");
+const Arweave = require("arweave/node");
 
-you can also filter by _Type_
+var arweave = Arweave.init({
+  host: "arweave.net",
+  port: 443,
+  protocol: "https",
+  timeout: 20000,
+  logging: false
+});
+
+const myQuery = and(
+  equals("from", "ZGt8zl7EJyMMEQ_j4kLaAYlEFOhrgYSEOw6eFPhIV0Y"),
+  equals("Feed-Name", "googleplay-history"),
+  or(
+    equals("Date", "2020-01-10"),
+    equals("Category", "PARENTING"),
+    equals("Type", "topselling_free")
+  )
+);
+
+(async () => {
+  const results = await arweave.arql(myQuery);
+  console.log("results :", results);
+})();
+```
 
 where the date is in YYYY-MM-DD format
 

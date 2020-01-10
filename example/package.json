@@ -1,0 +1,15 @@
+{
+  "name": "googleplay-history-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "babel-node app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "arql-ops": "^1.0.0",
+    "arweave": "^1.6.0"
+  }
+}
