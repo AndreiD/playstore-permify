@@ -33,7 +33,6 @@ The app loads the top apps, both FREE and PAID from each category and uploads th
 ## How to query it ?
 
 Best way to do it, is by using the wonderful library https://www.npmjs.com/package/arql-ops
-I've added an example folder
 
 ```
 const { or, equals, and } = require("arql-ops");
