@@ -82,7 +82,7 @@ async function publishOnArweave(payload, categoryType, collectionType) {
   transaction.addTag("Feed-Name", "googleplay-history");
   transaction.addTag("Category", categoryType);
   transaction.addTag("Type", collectionType);
-  transaction.addTag("date", new Date().toISOString().slice(0, 10));
+  transaction.addTag("Date", new Date().toISOString().slice(0, 10));
   await arweave.transactions.sign(transaction, rsaKey);
   const response = await arweave.transactions.post(transaction);
   return response;

@@ -49,13 +49,18 @@ op: 'and',
   },
   expr3: {
   op: 'equals',
-  expr1: 'date',
-  expr2: '2020-01-31'
+  expr1: 'Date',
+  expr2: '2020-01-10'
+  },
+  expr4: {
+  op: 'equals',
+  expr1: 'Category',
+  expr2: 'PARENTING'
   }
 }
 ```
 
-optionally filters _Category_ & _Type_
+you can also filter by _Type_
 
 where the date is in YYYY-MM-DD format
 
