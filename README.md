@@ -55,6 +55,8 @@ op: 'and',
 }
 ```
 
+optionally filters _Category_ & _Type_
+
 where the date is in YYYY-MM-DD format
 
 Categories tracked
