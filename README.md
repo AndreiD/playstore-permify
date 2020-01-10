@@ -50,7 +50,7 @@ op: 'and',
   expr3: {
   op: 'equals',
   expr1: 'Date',
-  expr2: '2020-01-10'
+  expr2: '2020-01-11'
   },
   expr4: {
   op: 'equals',
