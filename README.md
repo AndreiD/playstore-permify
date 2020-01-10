@@ -2,6 +2,10 @@
 
 Storing the top apps details from Google Play, once per day, PERMANENTLY & FREE TO QUERY
 
+The Arweave Wallet creating the transactions is this one ->
+
+https://viewblock.io/arweave/address/ZGt8zl7EJyMMEQ_j4kLaAYlEFOhrgYSEOw6eFPhIV0Y
+
 ### Something similar offers is made by this guys -> https://42matters.com/pricing
 
 Example app details:
@@ -21,10 +25,6 @@ Example app details:
       "score": 3.6320755
     }
 ```
-
-or check the latest transaction here
-
-https://viewblock.io/arweave/address/ZGt8zl7EJyMMEQ_j4kLaAYlEFOhrgYSEOw6eFPhIV0Y
 
 ## How it works
 
