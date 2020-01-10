@@ -2,7 +2,7 @@
 
 Storing the top apps details from Google Play, once per day, PERMANENTLY & FREE TO QUERY
 
-## Some Paid APIs that offer a way to query the Top apps -> https://42matters.com/pricing
+### Something similar offers is made by this guys -> https://42matters.com/pricing
 
 Example app details:
 
