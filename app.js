@@ -14,7 +14,7 @@ var jobQueue = new Queue("jobqueue", {
     password: config.redis.pass
   }
 });
-const version = "0.5";
+const version = "0.6";
 var counter = 0;
 
 // sleep time expects milliseconds
@@ -26,7 +26,7 @@ function sleep(time) {
 jobQueue.process(function(job, done) {
   counter = counter + 1;
   console.log(
-    "Working on -> %s %s (%d/110)",
+    "Working on -> %s %s (%d/120)",
     job.data.category,
     job.data.collection,
     counter
@@ -38,7 +38,7 @@ jobQueue.process(function(job, done) {
       //collection: gplay.collection.TOP_PAID,
       category: job.data.category,
       collection: job.data.collection,
-      num: 20
+      num: 30
     })
     .then(resp => {
       // some items are not formatted ok, so quotes appear not escaped
@@ -53,7 +53,14 @@ jobQueue.process(function(job, done) {
         type: job.data.collection,
         items: resp
       };
-      payload.push(appList);
+
+      (async () => {
+        let response = await publishOnArweave(
+          appList,
+          job.data.category,
+          job.data.collection
+        );
+      })();
     });
 
   // don't let google ban you
@@ -63,7 +70,7 @@ jobQueue.process(function(job, done) {
 });
 
 // publishes the payload to arweave
-async function publishOnArweave(payload) {
+async function publishOnArweave(payload, categoryType, collectionType) {
   console.log("publishing it to Arweave....................");
 
   let transaction = await arweave.createTransaction(
@@ -73,6 +80,8 @@ async function publishOnArweave(payload) {
     rsaKey
   );
   transaction.addTag("Feed-Name", "googleplay-history");
+  transaction.addTag("Category", categoryType);
+  transaction.addTag("Type", collectionType);
   transaction.addTag("date", new Date().toISOString().slice(0, 10));
   await arweave.transactions.sign(transaction, rsaKey);
   const response = await arweave.transactions.post(transaction);
@@ -81,11 +90,7 @@ async function publishOnArweave(payload) {
 
 // when there aren't any other queues to process
 jobQueue.on("drained", function(job, result) {
-  (async () => {
-    let response = await publishOnArweave(payload);
-    console.log(response);
-    process.exit();
-  })();
+  console.log("jobQueue drained...");
 });
 
 // -------------- MAIN -------------
