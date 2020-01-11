@@ -14,8 +14,8 @@ var jobQueue = new Queue("jobqueue", {
     password: config.redis.pass
   }
 });
-const version = "0.6";
-var counter = 0;
+const version = "0.7";
+var counter = 0; // we have in total 120 types
 
 // sleep time expects milliseconds
 function sleep(time) {
@@ -55,11 +55,7 @@ jobQueue.process(function(job, done) {
       };
 
       (async () => {
-        let response = await publishOnArweave(
-          appList,
-          job.data.category,
-          job.data.collection
-        );
+        await publishOnArweave(appList, job.data.category, job.data.collection);
       })();
     });
 
@@ -90,11 +86,11 @@ async function publishOnArweave(payload, categoryType, collectionType) {
 
 // when there aren't any other queues to process
 jobQueue.on("drained", function(job, result) {
-  console.log("jobQueue drained...");
+  console.log("jobQueue finished...");
 });
 
 // -------------- MAIN -------------
-console.log("Starting Google Play History Arweave (version %s)", version);
+console.log("Starting Google Play History Arweave version %s", version);
 
 // payload for sending to storage
 var payload = [];
