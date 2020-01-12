@@ -14,8 +14,8 @@ var jobQueue = new Queue("jobqueue", {
     password: config.redis.pass
   }
 });
-const version = "0.7";
-var counter = 0; // we have in total 120 types
+const version = "0.8";
+var counter = 0; // we have in total 118 types
 
 // sleep time expects milliseconds
 function sleep(time) {
@@ -26,7 +26,7 @@ function sleep(time) {
 jobQueue.process(function(job, done) {
   counter = counter + 1;
   console.log(
-    "Working on -> %s %s (%d/120)",
+    "Working on -> %s %s (%d/118)",
     job.data.category,
     job.data.collection,
     counter
